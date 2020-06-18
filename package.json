@@ -1,0 +1,24 @@
+{
+  "name": "stickyz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molaga/stickyz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/molaga/stickyz/issues"
+  },
+  "homepage": "https://github.com/molaga/stickyz#readme",
+  "dependencies": {
+    "electron": "^9.0.4"
+  }
+}
