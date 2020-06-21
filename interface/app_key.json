@@ -1,0 +1,14 @@
+{
+  "installed": {
+    "client_id": "996077787890-k0cpkdduccqniqoq7968uq1bh0ioemk1.apps.googleusercontent.com",
+    "project_id": "sticky-zen",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "x-3IYHgbN5G46zH7oteaumOX",
+    "redirect_uris": [
+      "urn:ietf:wg:oauth:2.0:oob",
+      "http://localhost"
+    ]
+  }
+}
