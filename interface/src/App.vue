@@ -43,6 +43,7 @@
   import { Event } from "@/types/event";
   import Calendar from "@/components/Calendar.vue";
   const { remote } = window.require('electron');
+  const fs = window.require('fs');
 
   @Component({
       components: { Calendar },
@@ -54,6 +55,7 @@
       updateEvents!: (...args: any) => any;
       profile!: any;
       tokens!: any;
+      log: any;
 
       userToken = '';
       oauthClient: OAuth2Client = new OAuth2Client(
@@ -65,11 +67,23 @@
       mounted (): void {
           // @ts-ignore
           window.oauth = this.oauthClient;
+          this.log = (input: string) => fs.appendFileSync(window.process.cwd() + '/log.txt', `${new Date()} - ${input}`);
 
           if (this.tokens && Object.keys(this.tokens).length) {
               this.oauthClient.setCredentials(this.tokens);
               this.fetchEvents();
           }
+      }
+
+      fixTime (time: string): Date {
+          const now = moment();
+          const result = moment(time);
+
+          result.date(now.date());
+          result.month(now.month());
+          result.year(now.year());
+
+          return result.toDate();
       }
 
       async fetchEvents (): Promise<void> {
@@ -89,12 +103,13 @@
                       return {
                           id: event.id,
                           name: event.summary,
-                          start: new Date(event.start.dateTime || event.start.date),
-                          end: new Date(event.end.dateTime || event.end.date),
+                          start: this.fixTime(event.start.dateTime || event.start.date),
+                          end: this.fixTime(event.end.dateTime || event.end.date),
                           conferenceLink: event.hangoutLink || (/^http.*zoom/.test(event.location || '') ? event.location.split(',')[0] : null),
                           timed: event.start.hasOwnProperty('dateTime')
                       }
                   })
+              this.log(events);
               this.updateEvents(events)
 
 
@@ -102,6 +117,7 @@
                   this.fetchEvents()
               }, 1000 * 60) //  * 15
           } catch (e) {
+              this.log(e);
               console.error(e.stack);
               this.updateUserState({ isLogged: false, tokens: {}, profile: {} });
           }
