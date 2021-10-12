@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/molaga/stickyz#readme",
   "dependencies": {
-    "electron": "^9.0.4"
+    "electron": "^11.5.0"
   }
 }
