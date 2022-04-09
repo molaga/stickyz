@@ -11,7 +11,7 @@
     "core-js": "^3.6.5",
     "google-auth-library": "^6.0.2",
     "googleapis": "^52.1.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
     "vue-gapi": "^0.3.1",
